@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RoadSafe AI | Road Accident Risk Prediction</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a href="#home" class="logo">
+                <span class="logo-mark">R</span>
+
+                <span class="logo-text">
+                    RoadSafe <strong>AI</strong>
+                </span>
+            </a>
+
+            <nav class="nav-menu">
+
+                <a href="#home" class="nav-link active">
+                    Home
+                </a>
+
+                <a href="#about" class="nav-link">
+                    About
+                </a>
+
+                <a href="#prediction" class="nav-link">
+                    Prediction
+                </a>
+
+            </nav>
+
+            <a href="#prediction" class="nav-button">
+                Try Prediction
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         HERO SECTION
+    ========================================================== -->
+
+    <section id="home" class="hero">
+
+        <!-- Decorative elements -->
+        <div class="hero-glow hero-glow-one"></div>
+        <div class="hero-glow hero-glow-two"></div>
+        <div class="road-grid-overlay"></div>
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Machine Learning Based System
+                </div>
+
+                <h1>
+                    Smarter Roads.
+                    <br>
+                    <span>Safer Journeys.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Analyze driver, vehicle, road and environmental
+                    conditions using Machine Learning to predict
+                    accident severity, estimate risk and generate
+                    intelligent safety recommendations.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="#prediction" class="primary-button">
+                        <span>Start Prediction</span>
+                        <span class="button-arrow">→</span>
+                    </a>
+
+                    <a href="#about" class="secondary-button">
+                        Explore System
+                    </a>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div class="hero-stat">
+                        <strong>AI</strong>
+                        <span>Powered Analysis</span>
+                    </div>
+
+                    <div class="hero-stat-divider"></div>
+
+                    <div class="hero-stat">
+                        <strong>ML</strong>
+                        <span>Risk Prediction</span>
+                    </div>
+
+                    <div class="hero-stat-divider"></div>
+
+                    <div class="hero-stat">
+                        <strong>24/7</strong>
+                        <span>Instant Results</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HERO VISUAL CARD -->
+
+            <div class="hero-visual">
+
+                <div class="hero-card">
+
+                    <div class="hero-card-top">
+
+                        <div class="hero-card-icon">
+                            🚘
+                        </div>
+
+                        <div class="live-indicator">
+                            <span class="live-dot"></span>
+                            AI SYSTEM
+                        </div>
+
+                    </div>
+
+                    <div class="hero-card-content">
+
+                        <span class="small-label">
+                            REAL-TIME ANALYSIS
+                        </span>
+
+                        <h3>
+                            Accident Risk
+                            <br>
+                            Assessment
+                        </h3>
+
+                        <p>
+                            Evaluate multiple accident conditions
+                            and receive an intelligent risk assessment.
+                        </p>
+
+                    </div>
+
+                    <div class="hero-card-footer">
+
+                        <div class="mini-progress">
+
+                            <div class="mini-progress-label">
+                                <span>AI Analysis</span>
+                                <strong>Ready</strong>
+                            </div>
+
+                            <div class="mini-progress-bar">
+                                <span></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="floating-card floating-card-one">
+                    <span>⚡</span>
+                    <div>
+                        <strong>Fast Analysis</strong>
+                        <small>Instant prediction</small>
+                    </div>
+                </div>
+
+                <div class="floating-card floating-card-two">
+                    <span>🛡️</span>
+                    <div>
+                        <strong>Safety Focused</strong>
+                        <small>Smart recommendations</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="hero-bottom-fade"></div>
+
+    </section>
+
+
+    <!-- =========================================================
+         ABOUT / HOW IT WORKS
+    ========================================================== -->
+
+    <section id="about" class="section about-section">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="section-eyebrow">
+                    ABOUT THE SYSTEM
+                </span>
+
+                <h2>
+                    How RoadSafe AI Works
+                </h2>
+
+                <p>
+                    Our Machine Learning system analyzes multiple
+                    accident-related factors to estimate severity
+                    and identify potential road risks.
+                </p>
+
+            </div>
+
+
+            <div class="info-grid">
+
+                <!-- DRIVER -->
+
+                <div class="info-card">
+
+                    <div class="info-card-number">
+                        01
+                    </div>
+
+                    <div class="info-icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        Driver Analysis
+                    </h3>
+
+                    <p>
+                        Considers driver age, gender, education,
+                        vehicle relationship and driving experience.
+                    </p>
+
+                    <div class="info-card-line"></div>
+
+                </div>
+
+
+                <!-- VEHICLE -->
+
+                <div class="info-card">
+
+                    <div class="info-card-number">
+                        02
+                    </div>
+
+                    <div class="info-icon">
+                        🚘
+                    </div>
+
+                    <h3>
+                        Vehicle Analysis
+                    </h3>
+
+                    <p>
+                        Evaluates vehicle type, ownership, service
+                        year, defects and number of vehicles involved.
+                    </p>
+
+                    <div class="info-card-line"></div>
+
+                </div>
+
+
+                <!-- ROAD -->
+
+                <div class="info-card">
+
+                    <div class="info-card-number">
+                        03
+                    </div>
+
+                    <div class="info-icon">
+                        🛣️
+                    </div>
+
+                    <h3>
+                        Road Analysis
+                    </h3>
+
+                    <p>
+                        Examines road alignment, lanes, junctions,
+                        surface type, conditions and vehicle movement.
+                    </p>
+
+                    <div class="info-card-line"></div>
+
+                </div>
+
+
+                <!-- ENVIRONMENT -->
+
+                <div class="info-card">
+
+                    <div class="info-card-number">
+                        04
+                    </div>
+
+                    <div class="info-icon">
+                        🌦️
+                    </div>
+
+                    <h3>
+                        Environment Analysis
+                    </h3>
+
+                    <p>
+                        Considers lighting, weather and collision
+                        conditions that may influence accident severity.
+                    </p>
+
+                    <div class="info-card-line"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PREDICTION SECTION
+    ========================================================== -->
+
+    <section id="prediction" class="section prediction-section">
+
+        <div class="container">
+
+            <div class="section-heading prediction-heading">
+
+                <span class="section-eyebrow">
+                    AI PREDICTION
+                </span>
+
+                <h2>
+                    Enter Accident Conditions
+                </h2>
+
+                <p>
+                    Provide the available accident conditions below.
+                    Our trained Machine Learning model will analyze
+                    the information and generate a prediction.
+                </p>
+
+            </div>
+
+
+            <form id="predictionForm" class="prediction-form">
+
+
+                <!-- =================================================
+                     DRIVER INFORMATION
+                ================================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+
+                        <span class="section-number">
+                            01
+                        </span>
+
+                        <div>
+                            <h3>
+                                Driver Information
+                            </h3>
+
+                            <p>
+                                Enter driver-related details.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <!-- TIME -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Time
+                            </label>
+
+                            <input type="time" name="Time">
+
+                        </div>
+
+
+                        <!-- DAY -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Day of Week
+                            </label>
+
+                            <select name="Day_of_week">
+
+                                <option value="">
+                                    Select day
+                                </option>
+
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                                <option>Saturday</option>
+                                <option>Sunday</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- AGE -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Age Band of Driver
+                            </label>
+
+                            <select name="Age_band_of_driver">
+
+                                <option value="">
+                                    Select age band
+                                </option>
+
+                                <option>18-20</option>
+                                <option>21-30</option>
+                                <option>31-50</option>
+                                <option>51-65</option>
+                                <option>Over 65</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- SEX -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Sex of Driver
+                            </label>
+
+                            <select name="Sex_of_driver">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Male</option>
+                                <option>Female</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- EDUCATION -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Educational Level
+                            </label>
+
+                            <select name="Educational_level">
+
+                                <option value="">
+                                    Select education
+                                </option>
+
+                                <option>Illiterate</option>
+                                <option>Writing & reading</option>
+                                <option>Elementary school</option>
+                                <option>Junior high school</option>
+                                <option>High school</option>
+                                <option>Above high school</option>
+                                <option>Unknown</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- DRIVER RELATION -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Vehicle Driver Relation
+                            </label>
+
+                            <select name="Vehicle_driver_relation">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Employee</option>
+                                <option>Owner</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- EXPERIENCE -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Driving Experience
+                            </label>
+
+                            <select name="Driving_experience">
+
+                                <option value="">
+                                    Select experience
+                                </option>
+
+                                <option>No Licence</option>
+                                <option>Below 1yr</option>
+                                <option>1-2yr</option>
+                                <option>2-5yr</option>
+                                <option>5-10yr</option>
+                                <option>Above 10yr</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     VEHICLE INFORMATION
+                ================================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+
+                        <span class="section-number">
+                            02
+                        </span>
+
+                        <div>
+                            <h3>
+                                Vehicle Information
+                            </h3>
+
+                            <p>
+                                Enter vehicle-related details.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <!-- VEHICLE TYPE -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Type of Vehicle
+                            </label>
+
+                            <select name="Type_of_vehicle">
+
+                                <option value="">
+                                    Select vehicle
+                                </option>
+
+                                <option>Automobile</option>
+                                <option>Lorry</option>
+                                <option>Public (> 45 seats)</option>
+                                <option>Public (13-45 seats)</option>
+                                <option>Public (12 seats)</option>
+                                <option>Taxi</option>
+                                <option>Motorcycle</option>
+                                <option>Ridden horse</option>
+                                <option>Bicycle</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- OWNER -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Owner of Vehicle
+                            </label>
+
+                            <select name="Owner_of_vehicle">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Owner</option>
+                                <option>Governmental</option>
+                                <option>Organization</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- SERVICE YEAR -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Service Year of Vehicle
+                            </label>
+
+                            <select name="Service_year_of_vehicle">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Below 1yr</option>
+                                <option>1-2yr</option>
+                                <option>2-5yrs</option>
+                                <option>5-10yrs</option>
+                                <option>Above 10yr</option>
+                                <option>Unknown</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- DEFECT -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Defect of Vehicle
+                            </label>
+
+                            <select name="Defect_of_vehicle">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>No defect</option>
+                                <option>7</option>
+                                <option>5</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- NUMBER OF VEHICLES -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Number of Vehicles Involved
+                            </label>
+
+                            <input type="number" name="Number_of_vehicles_involved" min="1" max="20" value="2">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ROAD INFORMATION
+                ================================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+
+                        <span class="section-number">
+                            03
+                        </span>
+
+                        <div>
+                            <h3>
+                                Road Information
+                            </h3>
+
+                            <p>
+                                Enter road and traffic details.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <!-- AREA -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Area Accident Occurred
+                            </label>
+
+                            <select name="Area_accident_occured">
+
+                                <option value="">
+                                    Select area
+                                </option>
+
+                                <option>Urban</option>
+                                <option>Rural</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- LANES -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Lanes / Medians
+                            </label>
+
+                            <select name="Lanes_or_Medians">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>
+                                    Two-way (divided with broken lines)
+                                </option>
+
+                                <option>
+                                    Two-way (divided with solid lines)
+                                </option>
+
+                                <option>
+                                    Two-way (not divided)
+                                </option>
+
+                                <option>
+                                    One-way
+                                </option>
+
+                                <option>
+                                    Unknown
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- ROAD ALIGNMENT -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Road Alignment
+                            </label>
+
+                            <select name="Road_allignment">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>
+                                    Tangent road with flat terrain
+                                </option>
+
+                                <option>
+                                    Tangent road with mild grade
+                                </option>
+
+                                <option>
+                                    Tangent road with rolling terrain
+                                </option>
+
+                                <option>
+                                    Gentle horizontal curve
+                                </option>
+
+                                <option>
+                                    Steep grade downward
+                                </option>
+
+                                <option>
+                                    Steep grade upward
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- JUNCTION -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Types of Junction
+                            </label>
+
+                            <select name="Types_of_Junction">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>No junction</option>
+                                <option>Y Shape</option>
+                                <option>T Shape</option>
+                                <option>Cross</option>
+                                <option>X Shape</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- SURFACE TYPE -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Road Surface Type
+                            </label>
+
+                            <select name="Road_surface_type">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Asphalt roads</option>
+                                <option>Earth roads</option>
+                                <option>Gravel roads</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- SURFACE CONDITION -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Road Surface Conditions
+                            </label>
+
+                            <select name="Road_surface_conditions">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Dry</option>
+                                <option>Wet or damp</option>
+                                <option>Snow</option>
+                                <option>Flood over 3cm</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- VEHICLE MOVEMENT -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Vehicle Movement
+                            </label>
+
+                            <select name="Vehicle_movement">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Going straight</option>
+                                <option>U-Turn</option>
+                                <option>Turning left</option>
+                                <option>Turning right</option>
+                                <option>Overtaking</option>
+                                <option>Reversing</option>
+                                <option>Getting off</option>
+                                <option>Stopping</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ENVIRONMENT INFORMATION
+                ================================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+
+                        <span class="section-number">
+                            04
+                        </span>
+
+                        <div>
+                            <h3>
+                                Environment & Weather
+                            </h3>
+
+                            <p>
+                                Enter environmental conditions.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <!-- LIGHT -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Light Conditions
+                            </label>
+
+                            <select name="Light_conditions">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Daylight</option>
+
+                                <option>
+                                    Darkness - lights lit
+                                </option>
+
+                                <option>
+                                    Darkness - lights unlit
+                                </option>
+
+                                <option>
+                                    Darkness - no lighting
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- WEATHER -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Weather Conditions
+                            </label>
+
+                            <select name="Weather_conditions">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>Normal</option>
+                                <option>Raining</option>
+                                <option>Raining and Windy</option>
+                                <option>Cloudy</option>
+                                <option>Windy</option>
+                                <option>Fog or mist</option>
+                                <option>Other</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- COLLISION -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Type of Collision
+                            </label>
+
+                            <select name="Type_of_collision">
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                                <option>
+                                    Vehicle with vehicle collision
+                                </option>
+
+                                <option>
+                                    Collision with roadside objects
+                                </option>
+
+                                <option>
+                                    Collision with pedestrians
+                                </option>
+
+                                <option>
+                                    Rollover
+                                </option>
+
+                                <option>
+                                    Collision with animals
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     SUBMIT BUTTON
+                ================================================== -->
+
+                <div class="form-submit">
+
+                    <div class="submit-information">
+
+                        <span class="submit-icon">
+                            ✦
+                        </span>
+
+                        <div>
+                            <strong>
+                                Ready to analyze?
+                            </strong>
+
+                            <small>
+                                Your information will be processed by the ML model.
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" id="predictButton" class="predict-button">
+
+                        <span id="buttonText">
+                            Predict Severity
+                        </span>
+
+                        <span id="buttonLoader" class="hidden">
+                            Analyzing...
+                        </span>
+
+                        <span class="submit-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         RESULT SECTION
+    ========================================================== -->
+
+    <section id="resultSection" class="result-section hidden">
+
+        <div class="container">
+
+
+            <div class="section-heading result-heading">
+
+                <span class="section-eyebrow">
+                    PREDICTION RESULT
+                </span>
+
+                <h2>
+                    AI Analysis Complete
+                </h2>
+
+                <p>
+                    Here is the result generated by the
+                    Machine Learning model.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 MAIN RESULT CARDS
+            ================================================== -->
+
+            <div class="result-grid">
+
+
+                <!-- SEVERITY -->
+
+                <div class="result-card severity-result-card">
+
+                    <div class="result-card-top">
+
+                        <div class="result-icon">
+                            🚨
+                        </div>
+
+                        <span class="result-card-label">
+                            SEVERITY
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Predicted Severity
+                    </h3>
+
+                    <div id="severityResult" class="result-value">
+                        --
+                    </div>
+
+                </div>
+
+
+                <!-- RISK -->
+
+                <div class="result-card risk-result-card">
+
+                    <div class="result-card-top">
+
+                        <div class="result-icon">
+                            ⚠️
+                        </div>
+
+                        <span class="result-card-label">
+                            RISK STATUS
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Risk Level
+                    </h3>
+
+                    <div id="riskResult" class="result-value">
+                        --
+                    </div>
+
+                </div>
+
+
+                <!-- RISK SCORE -->
+
+                <div class="result-card score-result-card">
+
+                    <div class="result-card-top">
+
+                        <div class="result-icon">
+                            📊
+                        </div>
+
+                        <span class="result-card-label">
+                            CONFIDENCE
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Risk Score
+                    </h3>
+
+                    <div id="riskProbability" class="result-value">
+                        0%
+                    </div>
+
+                    <div class="risk-progress">
+
+                        <div id="riskProgressBar" class="risk-progress-bar"></div>
+
+                    </div>
+
+                    <p class="score-note">
+                        Model confidence for the
+                        predicted severity class.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PROBABILITY
+            ================================================== -->
+
+            <div class="probability-card">
+
+                <div class="card-heading">
+
+                    <div class="card-heading-icon">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <span class="card-mini-label">
+                            MODEL INSIGHT
+                        </span>
+
+                        <h3>
+                            Severity Probability
+                        </h3>
+
+                        <p>
+                            Estimated probability for
+                            each severity class.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="probabilityContainer" class="probability-container"></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SAFETY RECOMMENDATIONS
+            ================================================== -->
+
+            <div class="recommendation-card">
+
+                <div class="recommendation-header">
+
+                    <div class="recommendation-icon">
+                        🛡️
+                    </div>
+
+                    <div>
+
+                        <span class="card-mini-label">
+                            SAFETY INSIGHTS
+                        </span>
+
+                        <h3>
+                            Safety Recommendations
+                        </h3>
+
+                        <p>
+                            Recommendations generated according
+                            to the entered road, vehicle, driver
+                            and environmental conditions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="recommendationContainer" class="recommendation-container"></div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ANOTHER PREDICTION
+            ================================================== -->
+
+            <div class="prediction-again">
+
+                <a href="#prediction" id="anotherPredictionButton">
+                    <span>←</span>
+                    Make Another Prediction
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-road-line"></div>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <a href="#home" class="logo footer-logo">
+
+                        <span class="logo-mark">
+                            R
+                        </span>
+
+                        <span class="logo-text">
+                            RoadSafe <strong>AI</strong>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        AI-Based Road Accident Risk Prediction
+                        and Severity Analysis Using Machine Learning.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <h4>
+                        Navigation
+                    </h4>
+
+                    <a href="#home">
+                        Home
+                    </a>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                    <a href="#prediction">
+                        Prediction
+                    </a>
+
+                </div>
+
+
+                <div class="footer-system">
+
+                    <h4>
+                        System
+                    </h4>
+
+                    <span>
+                        Machine Learning
+                    </span>
+
+                    <span>
+                        Risk Analysis
+                    </span>
+
+                    <span>
+                        Safety Recommendations
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 RoadSafe AI. Academic Project.
+                </p>
+
+                <span>
+                    Built with Machine Learning
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
