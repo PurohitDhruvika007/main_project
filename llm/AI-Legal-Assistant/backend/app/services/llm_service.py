@@ -1,63 +1,268 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch
 
-MODEL_PATH = "models/llm/legal-slm-500m-sft"
-
-tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-
-model = AutoModelForCausalLM.from_pretrained(
-    MODEL_PATH,
-    dtype=torch.float32
-)
-
-model.eval()
+import re
+import httpx
 
 
-def generate_answer(context: str, question: str, max_new_tokens: int = 100) -> str:
+# ---------------------------------------------------------
+# llama.cpp persistent server
+# ---------------------------------------------------------
 
-    # Keep the context small so the question and answer instruction
-    # are not lost because of the model's context limit.
-    context = context[:3000]
+LLAMA_SERVER_URL = "http://127.0.0.1:8080/v1/chat/completions"
 
-    prompt = f"""You are a legal document assistant.
 
-Answer the question using only the information given in the legal document.
-Give a short, simple and clear answer.
-Do not invent information.
+# ---------------------------------------------------------
+# Clean generated answer
+# ---------------------------------------------------------
 
-Legal Document:
-{context}
+def clean_answer(answer: str) -> str:
+    answer = answer.strip()
 
-Question: {question}
+    prefixes = [
+        "Answer:",
+        "answer:",
+        "Response:",
+        "response:"
+    ]
 
-Answer:"""
+    for prefix in prefixes:
+        if answer.startswith(prefix):
+            answer = answer[len(prefix):].strip()
 
-    inputs = tokenizer(
-        prompt,
-        return_tensors="pt",
-        truncation=True,
-        max_length=700
-    )
+    stop_words = [
+        "\nQuestion:",
+        "\nLegal document:",
+        "\nContext:",
+        "\nAnswer:",
+        "\nUser:",
+        "\nAssistant:"
+    ]
 
-    with torch.no_grad():
-        output = model.generate(
-            **inputs,
-            max_new_tokens=max_new_tokens,
-            do_sample=False,
-            pad_token_id=tokenizer.eos_token_id
-        )
+    for stop_word in stop_words:
+        if stop_word in answer:
+            answer = answer.split(stop_word, 1)[0].strip()
 
-    # Get only the newly generated tokens.
-    input_length = inputs["input_ids"].shape[1]
-
-    generated_tokens = output[0][input_length:]
-
-    answer = tokenizer.decode(
-        generated_tokens,
-        skip_special_tokens=True
-    ).strip()
-
-    if "Answer:" in answer:
-        answer = answer.split("Answer:", 1)[-1].strip()
+    answer = re.sub(r"\s+", " ", answer).strip()
 
     return answer
+
+
+# ---------------------------------------------------------
+# Extract useful sentence from retrieved context
+# ---------------------------------------------------------
+
+def extract_relevant_sentence(
+    context: str,
+    question: str
+):
+    sentences = re.split(
+        r"(?<=[.!?])\s+",
+        context
+    )
+
+    question_words = set(
+        re.findall(
+            r"\b[a-zA-Z]{4,}\b",
+            question.lower()
+        )
+    )
+
+    best_sentence = None
+    best_score = 0
+
+    for sentence in sentences:
+        sentence_words = set(
+            re.findall(
+                r"\b[a-zA-Z]{4,}\b",
+                sentence.lower()
+            )
+        )
+
+        score = len(
+            question_words.intersection(
+                sentence_words
+            )
+        )
+
+        if score > best_score:
+            best_score = score
+            best_sentence = sentence.strip()
+
+    if best_score >= 2:
+        return best_sentence
+
+    return None
+
+
+# ---------------------------------------------------------
+# Build legal assistant prompt
+# ---------------------------------------------------------
+
+def build_prompt(
+    context: str,
+    question: str
+):
+    system_message = """You are an AI legal document assistant.
+
+Your task is to answer questions about an uploaded legal document.
+
+IMPORTANT RULES:
+
+1. Use ONLY the information contained in the provided document context.
+
+2. Do not invent facts, names, dates, amounts, clauses, rights, duties, or obligations.
+
+3. Do not use outside legal knowledge to answer the question.
+
+4. If the answer is clearly present in the document, answer it directly.
+
+5. If the document does not contain enough information, clearly say that the information is not available in the provided document.
+
+6. For questions about amounts, provide the amount stated in the document.
+
+7. For questions about dates or duration, provide the dates or duration stated in the document.
+
+8. For questions about parties, identify the relevant party or parties from the document.
+
+9. For questions about clauses, explain the relevant clause using simple language.
+
+10. Keep the answer clear, concise, and easy to understand.
+
+11. Do not make assumptions.
+
+12. Do not give a generic legal answer when the document itself does not provide the information.
+
+13. Answer only the user's question.
+
+14. Do not repeat the entire document."""
+
+    return {
+        "messages": [
+            {
+                "role": "system",
+                "content": system_message
+            },
+            {
+                "role": "user",
+                "content": f"""LEGAL DOCUMENT CONTEXT:
+
+{context}
+
+USER QUESTION:
+
+{question}
+
+Answer the user's question using only the legal document context above."""
+            }
+        ],
+        "temperature": 0,
+        "top_p": 1,
+        "max_tokens": 150
+    }
+
+
+# ---------------------------------------------------------
+# Generate answer using persistent llama.cpp server
+# ---------------------------------------------------------
+
+def generate_with_model(
+    context: str,
+    question: str,
+    max_new_tokens: int = 150
+):
+    payload = build_prompt(
+        context=context,
+        question=question
+    )
+
+    payload["max_tokens"] = max_new_tokens
+
+    try:
+        response = httpx.post(
+            LLAMA_SERVER_URL,
+            json=payload,
+            timeout=300.0
+        )
+
+    except httpx.RequestError as e:
+        raise RuntimeError(
+            "Could not connect to llama.cpp server. "
+            "Make sure llama-server.exe is running on port 8080."
+        ) from e
+
+    if response.status_code != 200:
+        raise RuntimeError(
+            f"llama.cpp server error "
+            f"{response.status_code}: {response.text}"
+        )
+
+    data = response.json()
+
+    try:
+        answer = data["choices"][0]["message"]["content"]
+    except (KeyError, IndexError, TypeError):
+        raise RuntimeError(
+            f"Invalid response from llama.cpp server: {data}"
+        )
+
+    return clean_answer(answer)
+
+
+# ---------------------------------------------------------
+# Main answer function
+# ---------------------------------------------------------
+
+def generate_answer(
+    context: str,
+    question: str,
+    max_new_tokens: int = 150
+) -> str:
+
+    if not context or not context.strip():
+        return (
+            "I could not find relevant information "
+            "in the provided document."
+        )
+
+    if not question or not question.strip():
+        return "Please provide a question."
+
+    # Keep retrieved context limited
+    # while preserving the existing RAG design.
+
+    context = context[:8000]
+
+    answer = generate_with_model(
+        context=context,
+        question=question,
+        max_new_tokens=max_new_tokens
+    )
+
+    bad_answers = {
+        "",
+        "no",
+        "no.",
+        "yes",
+        "yes.",
+        "i don't know",
+        "i do not know",
+        "unknown",
+        "not sure"
+    }
+
+    if answer.lower().strip() not in bad_answers:
+        return answer
+
+    # Fallback when model does not provide a useful answer
+
+    relevant_sentence = extract_relevant_sentence(
+        context=context,
+        question=question
+    )
+
+    if relevant_sentence:
+        return relevant_sentence
+
+    return (
+        "I could not find a clear answer "
+        "in the provided document."
+    )

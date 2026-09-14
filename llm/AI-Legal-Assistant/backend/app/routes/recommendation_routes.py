@@ -1,14 +1,15 @@
+
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException
 
 from app.services.vector_store import load_vector_store
-from app.services.risk_service import analyze_risks
+from app.services.recommendation_service import generate_recommendations
 
 
 router = APIRouter(
-    prefix="/risks",
-    tags=["Risk Analysis"]
+    prefix="/recommendations",
+    tags=["Recommendations"]
 )
 
 
@@ -46,7 +47,7 @@ def get_current_document_id():
 
 
 @router.get("/analyze")
-async def analyze_document_risks():
+async def analyze_document_recommendations():
 
     document_id = get_current_document_id()
 
@@ -99,13 +100,13 @@ async def analyze_document_risks():
 
         context = context[:8000]
 
-        analysis = analyze_risks(
+        recommendations = generate_recommendations(
             context=context
         )
 
         return {
             "document_id": document_id,
-            "analysis": analysis
+            "recommendations": recommendations
         }
 
     except HTTPException:
@@ -123,7 +124,7 @@ async def analyze_document_risks():
         raise HTTPException(
             status_code=500,
             detail=(
-                "Risk analysis failed: "
+                "Recommendation analysis failed: "
                 f"{str(e)}"
             )
         )

@@ -10,8 +10,15 @@ ALLOWED_EXTENSIONS = {
     ".txt"
 }
 
+MIN_TEXT_LENGTH = 50
+MAX_FILE_SIZE = 20 * 1024 * 1024
+
 
 def validate_file(filename: str):
+    if not filename or not filename.strip():
+        raise ValueError(
+            "No file selected."
+        )
 
     extension = Path(filename).suffix.lower()
 
@@ -24,20 +31,71 @@ def validate_file(filename: str):
     return extension
 
 
+def validate_file_size(file_size: int):
+    if file_size <= 0:
+        raise ValueError(
+            "The uploaded file is empty. "
+            "Please upload a document containing legal content."
+        )
+
+    if file_size > MAX_FILE_SIZE:
+        raise ValueError(
+            "File is too large. "
+            "Maximum allowed file size is 20 MB."
+        )
+
+
 def process_document(file_path: str):
 
-    # Extract text
-    text = extract_text(file_path)
+    path = Path(file_path)
 
-    # Clean text
+    if not path.exists():
+        raise ValueError(
+            "Uploaded document could not be found."
+        )
+
+    file_size = path.stat().st_size
+
+    validate_file_size(file_size)
+
+    try:
+        text = extract_text(str(path))
+
+    except Exception as e:
+        raise ValueError(
+            "The uploaded document could not be read. "
+            "The file may be corrupted or invalid."
+        ) from e
+
+    if not text or not text.strip():
+        raise ValueError(
+            "No readable text was found in the document. "
+            "Please upload a document containing selectable text."
+        )
+
     cleaned_text = clean_text(text)
 
-    # Create chunks
+    if not cleaned_text or not cleaned_text.strip():
+        raise ValueError(
+            "The document does not contain usable text."
+        )
+
+    if len(cleaned_text.strip()) < MIN_TEXT_LENGTH:
+        raise ValueError(
+            "The document contains too little readable content "
+            "to perform legal analysis."
+        )
+
     chunks = chunk_text(
         cleaned_text,
         chunk_size=800,
         overlap=150
     )
+
+    if not chunks:
+        raise ValueError(
+            "The document could not be divided into usable text sections."
+        )
 
     return {
         "text": cleaned_text,
