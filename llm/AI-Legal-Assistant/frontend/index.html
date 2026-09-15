@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Legal Assistant</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <div class="logo">
+                <span class="logo-icon">⚖</span>
+                <span>AI Legal Assistant</span>
+            </div>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#upload">Upload</a>
+                <a href="#features">Features</a>
+                <a href="#chat">Ask Questions</a>
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-container">
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+                    AI-Powered Legal Assistance
+                </span>
+
+                <h1>
+                    Understand Your
+                    <span>Legal Documents</span>
+                    Easily
+                </h1>
+
+                <p>
+                    Upload your legal document and use AI to simplify
+                    complex legal language, understand your rights,
+                    identify risks, and get clear answers from your document.
+                </p>
+
+                <a href="#upload" class="hero-button">
+                    Analyze Document
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= UPLOAD SECTION ================= -->
+
+    <section class="upload-section" id="upload">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    DOCUMENT ANALYSIS
+                </span>
+
+                <h2>
+                    Upload Your Legal Document
+                </h2>
+
+                <p>
+                    Upload a PDF, DOCX, or TXT legal document to begin.
+                </p>
+
+            </div>
+
+
+            <div class="upload-card">
+
+                <div class="upload-box" id="uploadBox">
+
+                    <!-- Hidden file input -->
+
+                    <input type="file" id="documentInput" accept=".pdf,.docx,.txt" hidden>
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h3>
+                        Select Your Document
+                    </h3>
+
+                    <p>
+                        Supported formats: PDF, DOCX and TXT
+                    </p>
+
+                    <p class="upload-limit">
+                        Maximum file size: 20 MB
+                    </p>
+
+
+                    <button type="button" class="primary-button" id="chooseFileButton">
+                        Choose Document
+                    </button>
+
+                </div>
+
+
+                <!-- Selected file information -->
+
+                <div class="selected-file" id="selectedFile" style="display: none;">
+
+                    <div class="file-details">
+
+                        <div class="file-icon">
+                            📄
+                        </div>
+
+                        <div>
+
+                            <h4 id="selectedFileName">
+                                Document
+                            </h4>
+
+                            <p id="selectedFileSize">
+                                0 KB
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="button" class="remove-file-button" id="removeFileButton">
+                        Remove
+                    </button>
+
+                </div>
+
+
+                <!-- Upload button -->
+
+                <button type="button" class="upload-button" id="uploadButton" disabled>
+                    Upload & Analyze Document
+                </button>
+
+            </div>
+
+
+            <!-- ================= DOCUMENT INFORMATION ================= -->
+
+            <div class="document-info" id="documentInfo" style="display: none;">
+
+                <div class="document-info-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DOCUMENT READY
+                        </span>
+
+                        <h3>
+                            Document Information
+                        </h3>
+
+                    </div>
+
+                    <span class="status-badge">
+                        Indexed
+                    </span>
+
+                </div>
+
+
+                <div class="document-info-grid">
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            File Name
+                        </span>
+
+                        <strong id="infoFileName">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            File Type
+                        </span>
+
+                        <strong id="infoFileType">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            File Size
+                        </span>
+
+                        <strong id="infoFileSize">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Words
+                        </span>
+
+                        <strong id="infoWordCount">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Chunks
+                        </span>
+
+                        <strong id="infoChunkCount">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <span class="info-label">
+                            Embedding Dimension
+                        </span>
+
+                        <strong id="infoEmbeddingDimension">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features-section" id="features">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    AI FEATURES
+                </span>
+
+                <h2>
+                    Understand Your Document Better
+                </h2>
+
+                <p>
+                    Use AI-powered tools to analyze the uploaded legal document.
+                </p>
+
+            </div>
+
+
+            <div class="features-grid">
+
+
+                <!-- Summary -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Simplify Document
+                    </h3>
+
+                    <p>
+                        Get a simple and easy-to-understand summary
+                        of your legal document.
+                    </p>
+
+                    <button type="button" class="feature-button" id="summaryButton" disabled>
+                        Generate Summary
+                    </button>
+
+                </div>
+
+
+                <!-- Chat -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ?
+                    </div>
+
+                    <h3>
+                        Ask Questions
+                    </h3>
+
+                    <p>
+                        Ask questions about your uploaded document
+                        and receive document-grounded answers.
+                    </p>
+
+                    <button type="button" class="feature-button" id="chatFeatureButton" disabled>
+                        Ask Questions
+                    </button>
+
+                </div>
+
+
+                <!-- Rights -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ⚖
+                    </div>
+
+                    <h3>
+                        Rights & Obligations
+                    </h3>
+
+                    <p>
+                        Understand the rights, responsibilities,
+                        duties, and obligations mentioned in the document.
+                    </p>
+
+                    <button type="button" class="feature-button" id="rightsButton" disabled>
+                        Analyze Rights
+                    </button>
+
+                </div>
+
+
+                <!-- Risks -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        !
+                    </div>
+
+                    <h3>
+                        Risk Analysis
+                    </h3>
+
+                    <p>
+                        Identify potentially important or risky
+                        clauses and terms in your legal document.
+                    </p>
+
+                    <button type="button" class="feature-button" id="riskButton" disabled>
+                        Analyze Risks
+                    </button>
+
+                </div>
+
+
+                <!-- Recommendations -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        Recommendations
+                    </h3>
+
+                    <p>
+                        Receive practical recommendations based
+                        on the contents of your uploaded document.
+                    </p>
+
+                    <button type="button" class="feature-button" id="recommendationButton" disabled>
+                        Get Recommendations
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RESULTS SECTION ================= -->
+
+    <section class="results-section" id="results" style="display: none;">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    ANALYSIS RESULT
+                </span>
+
+                <h2>
+                    Document Analysis
+                </h2>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <div class="result-header">
+
+                    <h3 id="resultTitle">
+                        Analysis Result
+                    </h3>
+
+                    <button type="button" class="clear-result-button" id="clearResultButton">
+                        Clear
+                    </button>
+
+                </div>
+
+
+                <div class="result-content" id="resultContent">
+                    Your analysis result will appear here.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CHAT SECTION ================= -->
+
+    <section class="chat-section" id="chat">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    DOCUMENT CHAT
+                </span>
+
+                <h2>
+                    Ask Questions About Your Document
+                </h2>
+
+                <p>
+                    Ask natural-language questions and get answers
+                    based only on your uploaded legal document.
+                </p>
+
+            </div>
+
+
+            <div class="chat-card">
+
+                <!-- Chat messages -->
+
+                <div class="chat-messages" id="chatMessages">
+
+                    <div class="chat-message assistant-message">
+
+                        <div class="message-label">
+                            AI Assistant
+                        </div>
+
+                        <div class="message-text">
+                            Upload a legal document first.
+                            Then you can ask questions about its contents.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Chat input -->
+
+                <div class="chat-input-container">
+
+                    <textarea id="chatInput" placeholder="Ask a question about your document..." rows="3"
+                        disabled></textarea>
+
+
+                    <button type="button" class="send-button" id="sendChatButton" disabled>
+                        Send
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LOADING ================= -->
+
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+
+        <div class="loading-box">
+
+            <div class="loading-spinner"></div>
+
+            <h3 id="loadingTitle">
+                Processing...
+            </h3>
+
+            <p id="loadingMessage">
+                Please wait while the AI analyzes your document.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= EMPTY STATE ================= -->
+
+    <section class="empty-state" id="emptyState" style="display: none;">
+
+        <div class="section-container">
+
+            <div class="empty-state-card">
+
+                <div class="empty-state-icon">
+                    📄
+                </div>
+
+                <h3>
+                    No Document Uploaded
+                </h3>
+
+                <p>
+                    Please upload a legal document before using
+                    the AI analysis features.
+                </p>
+
+                <a href="#upload" class="primary-button">
+                    Upload Document
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+
+                    <span class="logo-icon">
+                        ⚖
+                    </span>
+
+                    <span>
+                        AI Legal Assistant
+                    </span>
+
+                </div>
+
+                <p>
+                    AI-powered legal document simplification
+                    and rights assistance.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#upload">
+                    Upload
+                </a>
+
+                <a href="#features">
+                    Features
+                </a>
+
+                <a href="#chat">
+                    Chat
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                AI Legal Assistant &copy; 2026. For informational purposes only.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div class="toast" id="toast" style="display: none;">
+
+        <div class="toast-content">
+
+            <strong id="toastTitle">
+                Notification
+            </strong>
+
+            <p id="toastMessage">
+                Message
+            </p>
+
+        </div>
+
+        <button type="button" class="toast-close" id="toastClose">
+            ×
+        </button>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
